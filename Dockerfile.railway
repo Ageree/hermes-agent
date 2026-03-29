@@ -18,6 +18,5 @@ WORKDIR /opt/hermes
 RUN chmod +x /opt/hermes/railway-entrypoint.sh
 
 ENV HERMES_HOME=/opt/data
-VOLUME ["/opt/data"]
 
 ENTRYPOINT ["/opt/hermes/railway-entrypoint.sh"]
