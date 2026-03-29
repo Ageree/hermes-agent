@@ -28,5 +28,8 @@ if [ -d "$INSTALL_DIR/skills" ]; then
     python3 "$INSTALL_DIR/tools/skills_sync.py"
 fi
 
+# Force Python to not buffer stdout/stderr so Railway sees logs in real-time
+export PYTHONUNBUFFERED=1
+
 # Start gateway in foreground (non-interactive, perfect for Railway)
-exec hermes gateway run
+exec hermes gateway run --verbose
