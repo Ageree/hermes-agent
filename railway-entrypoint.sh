@@ -30,6 +30,12 @@ patch_env "OPENROUTER_API_KEY" "$OPENROUTER_API_KEY"
 patch_env "LLM_MODEL" "$LLM_MODEL"
 patch_env "TELEGRAM_BOT_TOKEN" "$TELEGRAM_BOT_TOKEN"
 patch_env "TELEGRAM_ALLOWED_USERS" "$TELEGRAM_ALLOWED_USERS"
+
+echo "[railway] ENV sync done. Model=$LLM_MODEL"
+echo "[railway] Telegram token present: $([ -n "$TELEGRAM_BOT_TOKEN" ] && echo YES || echo NO)"
+echo "[railway] Allowed users: $TELEGRAM_ALLOWED_USERS"
+echo "[railway] .env contents (redacted):"
+grep -E "^(LLM_MODEL|TELEGRAM_BOT_TOKEN|TELEGRAM_ALLOWED|OPENROUTER)" "$HERMES_HOME/.env" | sed 's/=.*=.*/=***REDACTED***/'
 patch_env "TERMINAL_ENV" "$TERMINAL_ENV"
 patch_env "TERMINAL_TIMEOUT" "$TERMINAL_TIMEOUT"
 patch_env "EXA_API_KEY" "$EXA_API_KEY"
