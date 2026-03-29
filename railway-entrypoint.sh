@@ -59,5 +59,17 @@ fi
 # Force Python to not buffer stdout/stderr so Railway sees logs in real-time
 export PYTHONUNBUFFERED=1
 
-# Start gateway in foreground (non-interactive, perfect for Railway)
-exec hermes gateway run --verbose
+# Force Python logging to also write to stderr (Railway captures stdout+stderr)
+export HERMES_LOG_CONSOLE=1
+
+# Start gateway via Python directly so we can inject a console log handler
+exec python3 -c "
+import logging, sys, asyncio
+logging.basicConfig(level=logging.INFO, stream=sys.stderr,
+                    format='%(asctime)s %(levelname)s %(name)s: %(message)s')
+sys.path.insert(0, '/opt/hermes')
+from gateway.run import start_gateway
+success = asyncio.run(start_gateway())
+if not success:
+    sys.exit(1)
+"
