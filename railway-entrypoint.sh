@@ -18,11 +18,10 @@ fi
 patch_env() {
     local key="$1" val="$2" file="$HERMES_HOME/.env"
     if [ -n "$val" ]; then
-        if grep -q "^${key}=" "$file" 2>/dev/null; then
-            sed -i "s|^${key}=.*|${key}=${val}|" "$file"
-        else
-            echo "${key}=${val}" >> "$file"
-        fi
+        # Remove existing line, then append — avoids sed delimiter issues with special chars
+        grep -v "^${key}=" "$file" > "$file.tmp" 2>/dev/null || true
+        mv "$file.tmp" "$file"
+        echo "${key}=${val}" >> "$file"
     fi
 }
 
@@ -30,16 +29,17 @@ patch_env "OPENROUTER_API_KEY" "$OPENROUTER_API_KEY"
 patch_env "LLM_MODEL" "$LLM_MODEL"
 patch_env "TELEGRAM_BOT_TOKEN" "$TELEGRAM_BOT_TOKEN"
 patch_env "TELEGRAM_ALLOWED_USERS" "$TELEGRAM_ALLOWED_USERS"
-
-echo "[railway] ENV sync done. Model=$LLM_MODEL"
-echo "[railway] Telegram token present: $([ -n "$TELEGRAM_BOT_TOKEN" ] && echo YES || echo NO)"
-echo "[railway] Allowed users: $TELEGRAM_ALLOWED_USERS"
-echo "[railway] .env contents (redacted):"
-grep -E "^(LLM_MODEL|TELEGRAM_BOT_TOKEN|TELEGRAM_ALLOWED|OPENROUTER)" "$HERMES_HOME/.env" | sed 's/=.*=.*/=***REDACTED***/'
 patch_env "TERMINAL_ENV" "$TERMINAL_ENV"
 patch_env "TERMINAL_TIMEOUT" "$TERMINAL_TIMEOUT"
 patch_env "EXA_API_KEY" "$EXA_API_KEY"
 patch_env "FAL_KEY" "$FAL_KEY"
+
+echo "[railway] ENV sync done. Model=$LLM_MODEL"
+echo "[railway] Telegram: $([ -n "$TELEGRAM_BOT_TOKEN" ] && echo YES || echo NO)"
+echo "[railway] EXA_API_KEY: $([ -n "$EXA_API_KEY" ] && echo SET || echo MISSING)"
+echo "[railway] FAL_KEY: $([ -n "$FAL_KEY" ] && echo SET || echo MISSING)"
+echo "[railway] .env FAL_KEY line:"
+grep "^FAL_KEY" "$HERMES_HOME/.env" | head -1 | cut -c1-20
 
 # config.yaml
 if [ ! -f "$HERMES_HOME/config.yaml" ]; then
