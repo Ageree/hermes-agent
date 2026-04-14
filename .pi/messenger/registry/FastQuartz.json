@@ -8,12 +8,13 @@
   "gitBranch": "main",
   "isHuman": true,
   "session": {
-    "toolCalls": 32,
-    "tokens": 392182,
+    "toolCalls": 41,
+    "tokens": 630341,
     "filesModified": []
   },
   "activity": {
-    "lastActivityAt": "2026-04-14T17:48:21.183Z",
+    "lastActivityAt": "2026-04-14T17:49:08.900Z",
+    "currentActivity": "running tests",
     "lastToolCall": "test: passed"
   },
   "currentChannel": "backend",
@@ -22,5 +23,6 @@
     "young-ice",
     "memory",
     "backend"
-  ]
+  ],
+  "statusMessage": "debugging..."
 }
