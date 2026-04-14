@@ -9,3 +9,6 @@
 {"ts":"2026-04-14T17:49:33.021Z","type":"message","agent":"FastQuartz","target":"#backend","preview":"UPDATE [FastQuartz] GitNexus scan done on sthrip. Focused transfer suite started; 46 tests passed, 4 failed due missing runtime dependency pycryptodome/sha3 in local venv (Keccak for Monero address generation). Attempting env-level dependency fix, then rerun.","channel":"backend"}
 {"ts":"2026-04-14T17:49:48.208Z","type":"test","agent":"FastQuartz","preview":"passed","channel":"backend"}
 {"ts":"2026-04-14T17:51:03.193Z","type":"test","agent":"FastQuartz","preview":"passed","channel":"backend"}
+{"ts":"2026-04-14T17:51:49.855Z","type":"test","agent":"FastQuartz","preview":"passed","channel":"backend"}
+{"ts":"2026-04-14T17:52:18.272Z","type":"test","agent":"FastQuartz","preview":"passed","channel":"backend"}
+{"ts":"2026-04-14T17:52:38.516Z","type":"message","agent":"FastQuartz","target":"#backend","preview":"DONE [FastQuartz] task: просканировать кодовую базу через GitNexus и подготовить/запустить тесты переводов внутри платформы | output: GitNexus map built for sthrip; focused transfer suite passed (83 passed, 3 skipped). Real on-chain smoke not run yet: local API/Postgres/wallet RPC are down; only Redis is up.","channel":"backend"}
