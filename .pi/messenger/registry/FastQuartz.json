@@ -8,13 +8,12 @@
   "gitBranch": "main",
   "isHuman": true,
   "session": {
-    "toolCalls": 41,
-    "tokens": 630341,
+    "toolCalls": 49,
+    "tokens": 1050567,
     "filesModified": []
   },
   "activity": {
-    "lastActivityAt": "2026-04-14T17:49:08.900Z",
-    "currentActivity": "running tests",
+    "lastActivityAt": "2026-04-14T17:50:06.383Z",
     "lastToolCall": "test: passed"
   },
   "currentChannel": "backend",
