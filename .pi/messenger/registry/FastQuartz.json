@@ -8,12 +8,13 @@
   "gitBranch": "main",
   "isHuman": true,
   "session": {
-    "toolCalls": 5,
-    "tokens": 43766,
+    "toolCalls": 13,
+    "tokens": 136110,
     "filesModified": []
   },
   "activity": {
-    "lastActivityAt": "2026-04-14T17:46:59.035Z"
+    "lastActivityAt": "2026-04-14T17:47:40.013Z",
+    "lastToolCall": "test: passed"
   },
   "currentChannel": "backend",
   "sessionChannel": "young-ice",
